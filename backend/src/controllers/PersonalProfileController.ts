@@ -24,31 +24,35 @@ export default {
 
   async create(request: Request, response: Response) {
     const {
-      first_name,
-      last_name,
+      name,
       nickname,
       gender,
       age,
       address,
       phone_number,
+      in_a_startup,
       description,
       email,
       password,
     } = request.body;
   
     const personalProfileRepository = getRepository(PersonalProfile);
-  
+    
+    const requestPersonalProfileImage = request.file;
+    const personalProfileImage = requestPersonalProfileImage;
+
     const personalProfile = personalProfileRepository.create({
-      first_name,
-      last_name,
+      name,
       nickname,
       gender,
       age,
       address,
       phone_number,
+      in_a_startup,
       description,
       email,
       password,
+      // personalProfileImage,
     });
   
     await personalProfileRepository.save(personalProfile);

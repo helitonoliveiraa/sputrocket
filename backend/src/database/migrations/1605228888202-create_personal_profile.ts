@@ -15,11 +15,7 @@ export class createPersonalProfile1605228888202 implements MigrationInterface {
           generationStrategy: 'increment',
         },
         {
-          name: 'first_name',
-          type: 'varchar',
-        },
-        {
-          name: 'last_name',
+          name: 'name',
           type: 'varchar',
         },
         {
@@ -29,6 +25,7 @@ export class createPersonalProfile1605228888202 implements MigrationInterface {
         {
           name: 'gender',
           type: 'boolean',
+          default: false,
         },
         {
           name: 'age',
@@ -41,6 +38,11 @@ export class createPersonalProfile1605228888202 implements MigrationInterface {
         {
           name: 'phone_number',
           type: 'varchar',
+        },
+        {
+          name: 'in_a_startup',
+          type: 'boolean',
+          default: false,
         },
         {
           name: 'description',
