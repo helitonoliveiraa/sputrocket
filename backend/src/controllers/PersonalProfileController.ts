@@ -24,8 +24,7 @@ export default {
 
   async create(request: Request, response: Response) {
     const {
-      first_name,
-      last_name,
+      name,
       nickname,
       gender,
       age,
@@ -38,10 +37,12 @@ export default {
     } = request.body;
   
     const personalProfileRepository = getRepository(PersonalProfile);
-  
+    
+    const requestPersonalProfileImage = request.file;
+    const personalProfileImage = requestPersonalProfileImage;
+
     const personalProfile = personalProfileRepository.create({
-      first_name,
-      last_name,
+      name,
       nickname,
       gender,
       age,
@@ -51,6 +52,7 @@ export default {
       description,
       email,
       password,
+      // personalProfileImage,
     });
   
     await personalProfileRepository.save(personalProfile);

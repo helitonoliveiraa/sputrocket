@@ -15,11 +15,7 @@ export class createPersonalProfile1605228888202 implements MigrationInterface {
           generationStrategy: 'increment',
         },
         {
-          name: 'first_name',
-          type: 'varchar',
-        },
-        {
-          name: 'last_name',
+          name: 'name',
           type: 'varchar',
         },
         {
