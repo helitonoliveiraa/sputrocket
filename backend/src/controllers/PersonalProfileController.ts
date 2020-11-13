@@ -4,6 +4,24 @@ import { getRepository } from 'typeorm';
 import PersonalProfile from '../models/PersonalProfile';
 
 export default {
+  async index(request: Request, response: Response) {
+    const personalProfileRepository = getRepository(PersonalProfile);
+
+    const personalProfiles = await personalProfileRepository.find();
+
+    return response.json(personalProfiles);
+  },
+
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const personalProfileRepository = getRepository(PersonalProfile);
+
+    const personalProfile = await personalProfileRepository.findOneOrFail(id);
+
+    return response.json(personalProfile);
+  },
+
   async create(request: Request, response: Response) {
     const {
       first_name,
