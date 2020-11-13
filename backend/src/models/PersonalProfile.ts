@@ -27,6 +27,9 @@ export default class PersonalProfile {
   phone_number: string;
 
   @Column()
+  in_a_startup: boolean;
+
+  @Column()
   description: string;
 
   @Column()
