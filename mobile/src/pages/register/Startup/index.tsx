@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { StatusBar } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { Feather } from '@expo/vector-icons';
 
 import startupImgLogo from '../../../assets/startup-logo.png';
 
@@ -10,7 +12,11 @@ import {
   Header,
   LineThin,
   PhotoPerfil,
-  ImagePreviw,
+  AddStartupImg,
+  ScrollContainer,
+  Scroll,
+  PreviewProfileImg,
+  PreviwStartupImg,
   Input,
   Label,
   Button,
@@ -19,9 +25,10 @@ import {
 } from './styles';
 
 const Startup: React.FC = () => {
-  const [image, setImage] = useState<string[]>([]);
+  const [profileImg, setProfileImg] = useState<string[]>([]);
+  const [startupImg, setStartupIMg] = useState<string[]>([]);
 
-  async function handleSelectImage() {
+  async function handleSelectProfileImage() {
     const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
 
     if (status !== 'granted') {
@@ -40,66 +47,113 @@ const Startup: React.FC = () => {
 
     const { uri: img } = pickerResult;
 
-    image.forEach((img, index) => {
+    profileImg.forEach((img, index) => {
       if (index === 0) {
-        image.pop();
+        profileImg.pop();
       }
     });
 
-    setImage([...image, img]);
+    setProfileImg([...profileImg, img]);
 
-    console.log(img);
+    return '';
+  }
+
+  async function handleSelectStartupImage() {
+    const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+
+    if (status !== 'granted') {
+      return Alert.alert('Ops! precisamos de acesso às suas fotos...');
+    }
+
+    const pickerResult = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    });
+
+    if (pickerResult.cancelled) {
+      return '';
+    }
+
+    const { uri: img } = pickerResult;
+
+    // startupImg.forEach((img, index) => {
+    //   if (index === 0) {
+    //     startupImg.pop();
+    //   }
+    // });
+
+    setStartupIMg([...startupImg, img]);
 
     return '';
   }
 
   return (
-    <Container>
-      <FormContainer>
-        <HeaderContainer>
-          <Header>
-            <PhotoPerfil onPress={handleSelectImage}>
-              {image.length === 0 ? (
-                <ImagePreviw source={startupImgLogo} />
-              ) : (
-                image.map(img => (
-                  <ImagePreviw key={img} source={{ uri: img }} />
-                ))
-              )}
-            </PhotoPerfil>
-          </Header>
-          <LineThin
-            style={{
-              marginTop: -75,
-            }}
-          />
-        </HeaderContainer>
+    <>
+      <StatusBar backgroundColor="#9900cc" barStyle="light-content" />
+      <Container>
+        <FormContainer>
+          <HeaderContainer>
+            <Header>
+              <PhotoPerfil onPress={handleSelectProfileImage}>
+                {profileImg.length === 0 ? (
+                  <PreviewProfileImg source={startupImgLogo} />
+                ) : (
+                  profileImg.map(img => (
+                    <PreviewProfileImg key={img} source={{ uri: img }} />
+                  ))
+                )}
+              </PhotoPerfil>
+            </Header>
+            <LineThin
+              style={{
+                marginTop: -75,
+              }}
+            />
+          </HeaderContainer>
 
-        <Label>Nome Startup</Label>
-        <Input placeholder="Ex: SputRocket" />
+          <Label>Nome Startup</Label>
+          <Input placeholder="Ex: SputRocket" />
 
-        <Label>Ano de Criação</Label>
-        <Input placeholder="Ex: 24/11/1998" />
+          <Label>Ano de Criação</Label>
+          <Input placeholder="Ex: 24/11/1998" />
 
-        <Label>Descrição</Label>
-        <Input box multiline />
+          <Label>Fotos da Startup</Label>
 
-        <Label>Nickname</Label>
-        <Input />
+          <ScrollContainer>
+            <AddStartupImg onPress={handleSelectStartupImage}>
+              <Feather name="plus" size={24} color="black" />
+            </AddStartupImg>
+            <Scroll>
+              {startupImg.map(img => (
+                <PreviwStartupImg
+                  key={`${img}-${Date.now()}`}
+                  source={{ uri: img }}
+                />
+              ))}
+            </Scroll>
+          </ScrollContainer>
 
-        <Label>E-mail</Label>
-        <Input />
+          <Label>Descrição</Label>
+          <Input box multiline />
 
-        <Label>Senha</Label>
-        <Input />
-      </FormContainer>
+          <Label>Nickname</Label>
+          <Input />
 
-      <Footer>
-        <Button>
-          <ButtonText>CADASTRAR</ButtonText>
-        </Button>
-      </Footer>
-    </Container>
+          <Label>E-mail</Label>
+          <Input />
+
+          <Label>Senha</Label>
+          <Input />
+        </FormContainer>
+
+        <Footer>
+          <Button>
+            <ButtonText>CADASTRAR</ButtonText>
+          </Button>
+        </Footer>
+      </Container>
+    </>
   );
 };
 
