@@ -25,7 +25,7 @@ export const ButtonStarup = styled(RectButton)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background: #9900cc;
+  background: #8200ad;
   width: 220px;
   height: 52px;
   border-radius: 35px;
@@ -43,7 +43,7 @@ export const ButtonPerson = styled(RectButton)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background: #8200ad;
+  background: #9900cc;
   width: 220px;
   height: 52px;
   border-radius: 35px;

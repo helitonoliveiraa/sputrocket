@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 import { TouchableOpacity } from 'react-native';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
 `;
 
@@ -29,12 +29,12 @@ export const Header = styled.View`
 export const Line = styled.View`
   width: 100%;
   height: 10px;
-  background: #8200ad;
+  background: #9900cc;
 `;
 
 export const LineThin = styled.View`
   height: 1px;
-  background: #8200ad;
+  background: #9900cc;
 `;
 
 export const ImagePreviw = styled.Image.attrs({
@@ -52,7 +52,7 @@ export const PhotoPerfil = styled(TouchableOpacity).attrs({
   height: 150px;
   border-width: 3px;
   border-radius: 75px;
-  border-color: #8200ad;
+  border-color: #9900cc;
   background-color: #fff;
 
   align-items: center;
@@ -63,7 +63,7 @@ export const PhotoPerfil = styled(TouchableOpacity).attrs({
 
 export const Label = styled.Text`
   font-family: 'Roboto_700Bold_Italic';
-  color: #8200ad;
+  color: #9900cc;
   margin: 10px 0 0 10px;
 `;
 
@@ -72,7 +72,7 @@ export const Input = styled.TextInput`
   height: 45px;
   border-width: 1px;
   border-radius: 35px;
-  border-color: #8200ad;
+  border-color: #9900cc;
   padding: 0 20px;
   background: #fff;
   font-family: 'Roboto_700Bold_Italic';

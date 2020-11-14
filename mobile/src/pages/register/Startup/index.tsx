@@ -8,7 +8,6 @@ import {
   FormContainer,
   HeaderContainer,
   Header,
-  Line,
   LineThin,
   PhotoPerfil,
   ImagePreviw,
@@ -56,7 +55,6 @@ const Startup: React.FC = () => {
 
   return (
     <Container>
-      <Line />
       <FormContainer>
         <HeaderContainer>
           <Header>
