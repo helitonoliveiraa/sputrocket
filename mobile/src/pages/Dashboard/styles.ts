@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-  color: #9900cc;
+  color: #8200ad;
   font-size: 40px;
   line-height: 40px;
   width: 350px;
@@ -24,7 +24,7 @@ export const Title = styled.Text`
 export const ButtonLogin = styled(RectButton)`
   align-items: center;
   justify-content: center;
-  background: #9900cc;
+  background: #8200ad;
   width: 200px;
   height: 52px;
   border-radius: 35px;
@@ -40,7 +40,7 @@ export const ButtonLoginText = styled.Text`
 export const ButtonSignUp = styled(RectButton)`
   align-items: center;
   justify-content: center;
-  background: #8200ad;
+  background: #9900cc;
   width: 200px;
   height: 52px;
   border-radius: 35px;
