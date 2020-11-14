@@ -32,11 +32,17 @@ export default {
   
     const startupProfileRepository = getRepository(StartupProfile);
   
+    const requestStartupProfileImage = request.files as Express.Multer.File[];
+    const startup_profile_image = requestStartupProfileImage.map(startup_profile_images => {
+      return { path: startup_profile_images.filename };
+    });
+
     const startupProfile = startupProfileRepository.create({
       name,
       creation_date,
       email,
       password,
+      startup_profile_image,
     });
   
     await startupProfileRepository.save(startupProfile);

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
 
 import PersonalProfileImage from './PersonalProfileImage';
 
@@ -37,9 +37,9 @@ export default class PersonalProfile {
   @Column()
   password: string;
 
-  @OneToOne(() => PersonalProfileImage, personal_profile_image => personal_profile_image.personal_profile, {
+  @OneToMany(() => PersonalProfileImage, personal_profile_image => personal_profile_image.personal_profile, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({ name: 'personal_profile_image_id' })
-  personal_profile_image: PersonalProfileImage;
+  personal_profile_image: PersonalProfileImage[];
 };

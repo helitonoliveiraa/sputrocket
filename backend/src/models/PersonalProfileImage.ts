@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 import PersonalProfile from './PersonalProfile';
 
@@ -10,7 +10,7 @@ export default class PersonalProfileImage {
   @Column()
   path: string;
 
-  @OneToOne(() => PersonalProfile, personal_profile => personal_profile.personal_profile_image)
+  @ManyToOne(() => PersonalProfile, personal_profile => personal_profile.personal_profile_image)
   @JoinColumn({ name: 'personal_profile_image_id' })
   personal_profile: PersonalProfile;
 };
