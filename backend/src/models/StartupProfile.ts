@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToMany } from 'typeorm';
+
+import StartupProfileImage from './StartupProfileImages';
 
 @Entity('startup_profile')
 export default class StartupProfile {
@@ -16,4 +18,10 @@ export default class StartupProfile {
 
   @Column()
   password: string;
+
+  @OneToMany(() => StartupProfileImage, startup_profile_image => startup_profile_image.startup_profile, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({ name: 'startup_profile_image_id' })
+  startup_profile_image: StartupProfileImage[];
 };
