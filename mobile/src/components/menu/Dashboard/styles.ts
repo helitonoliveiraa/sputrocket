@@ -1,9 +1,13 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
   padding: 0 20px;
 `;
+
+export const ScrollContainer = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})``;
 
 export const Header = styled.View`
   flex-direction: row;
@@ -53,7 +57,7 @@ export const Location = styled.Text`
   color: #666;
 `;
 
-export const Image = styled.Image.attrs({
+export const ProfileImage = styled.Image.attrs({
   resizeMode: 'cover',
 })`
   width: 70px;
@@ -76,7 +80,40 @@ export const Photo = styled.Image.attrs({
 
 export const LabelContainer = styled.View`
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 15px;
 `;
 
-export const LabelTitle = styled.Text``;
+export const LabelTitle = styled.Text`
+  font-family: 'Roboto_700Bold';
+  color: #333;
+  font-size: 18px;
+`;
+
+export const IconContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const IconHands = styled.Image.attrs({
+  resizeMode: 'cover',
+})`
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+`;
+
+export const IconDots = styled.Image.attrs({
+  resizeMode: 'cover',
+})`
+  width: 30px;
+  height: 30px;
+`;
+
+export const Describe = styled.Text`
+  margin-top: 10px;
+  font-family: 'Roboto_400Regular';
+  color: #333;
+  text-align: justify;
+`;
