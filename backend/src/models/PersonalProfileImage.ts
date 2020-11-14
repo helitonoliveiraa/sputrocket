@@ -3,7 +3,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import PersonalProfile from './PersonalProfile';
 
 @Entity('personal_profile_image')
-export default class StartupProfile {
+export default class PersonalProfileImage {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
