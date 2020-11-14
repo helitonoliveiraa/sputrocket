@@ -38,8 +38,10 @@ export default {
   
     const personalProfileRepository = getRepository(PersonalProfile);
     
-    const requestPersonalProfileImage = request.file;
-    const personalProfileImage = requestPersonalProfileImage;
+    const requestPersonalProfileImage = request.files as Express.Multer.File[];
+    const personal_profile_image = requestPersonalProfileImage.map(personal_profile_images => {
+      return { path: personal_profile_images.filename };
+    });
 
     const personalProfile = personalProfileRepository.create({
       name,
@@ -52,7 +54,7 @@ export default {
       description,
       email,
       password,
-      // personalProfileImage,
+      personal_profile_image,
     });
   
     await personalProfileRepository.save(personalProfile);
