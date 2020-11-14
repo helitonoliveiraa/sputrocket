@@ -7,6 +7,9 @@ import Dashboard from './pages/Dashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
+import RegisterPerson from './pages/register/Person';
+import RegisterStartup from './pages/register/Startup';
+
 const Stack = createStackNavigator();
 
 const Routes: React.FC = () => (
@@ -23,8 +26,10 @@ const Routes: React.FC = () => (
       <Stack.Screen name="Dashboard" component={Dashboard} />
 
       <Stack.Screen name="SignIn" component={SignIn} />
-
       <Stack.Screen name="SignUp" component={SignUp} />
+
+      <Stack.Screen name="RegisterPerson" component={RegisterPerson} />
+      <Stack.Screen name="RegisterStartup" component={RegisterStartup} />
     </Stack.Navigator>
   </NavigationContainer>
 );

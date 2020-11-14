@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesome, Zocial, Octicons } from '@expo/vector-icons';
 
 import backgroundImg from '../../assets/background-img.png';
@@ -13,26 +14,30 @@ import {
   ButtonPersonText,
 } from './styles';
 
-const SignUp: React.FC = () => (
-  <Container>
-    <Title>EMBARQUE NESSA JORNADA</Title>
+const SignUp: React.FC = () => {
+  const navigation = useNavigation();
 
-    <Image source={backgroundImg} />
+  return (
+    <Container>
+      <Title>EMBARQUE NESSA JORNADA</Title>
 
-    <ButtonStarup>
-      <Zocial name="email" size={24} color="#fff" />
-      <ButtonStarupText>STARUP</ButtonStarupText>
-      <View />
-    </ButtonStarup>
+      <Image source={backgroundImg} />
 
-    <ButtonPerson>
-      <Octicons name="person" size={24} color="#fff" />
-      <ButtonPersonText>PESSOA</ButtonPersonText>
-      <View />
-    </ButtonPerson>
+      <ButtonStarup onPress={() => navigation.navigate('RegisterStartup')}>
+        <Zocial name="email" size={24} color="#fff" />
+        <ButtonStarupText>STARTUP</ButtonStarupText>
+        <View />
+      </ButtonStarup>
 
-    <FontAwesome name="question-circle-o" size={30} color="#9900cc" />
-  </Container>
-);
+      <ButtonPerson onPress={() => navigation.navigate('RegisterPerson')}>
+        <Octicons name="person" size={24} color="#fff" />
+        <ButtonPersonText>PESSOA</ButtonPersonText>
+        <View />
+      </ButtonPerson>
+
+      <FontAwesome name="question-circle-o" size={30} color="#9900cc" />
+    </Container>
+  );
+};
 
 export default SignUp;
