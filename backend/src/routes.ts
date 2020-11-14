@@ -11,7 +11,7 @@ const upload = multer(uploadConfig);
 
 routes.get('/register/personal-profile', PesonalProfileController.index);
 routes.get('/register/personal-profile/:id', PesonalProfileController.show);
-routes.post('/register/personal-profile', upload.single('personal_image'), PesonalProfileController.create);
+routes.post('/register/personal-profile', upload.single('personal_profile_image'), PesonalProfileController.create);
 
 routes.get('/register/startup-profile', StartupProfileController.index);
 routes.get('/register/startup-profile/:id', StartupProfileController.show);
