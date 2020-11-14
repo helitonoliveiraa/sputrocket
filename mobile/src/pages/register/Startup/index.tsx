@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
 
@@ -25,6 +26,8 @@ import {
 } from './styles';
 
 const Startup: React.FC = () => {
+  const natigation = useNavigation();
+
   const [profileImg, setProfileImg] = useState<string[]>([]);
   const [startupImg, setStartupIMg] = useState<string[]>([]);
 
@@ -76,12 +79,6 @@ const Startup: React.FC = () => {
     }
 
     const { uri: img } = pickerResult;
-
-    // startupImg.forEach((img, index) => {
-    //   if (index === 0) {
-    //     startupImg.pop();
-    //   }
-    // });
 
     setStartupIMg([...startupImg, img]);
 
@@ -148,7 +145,7 @@ const Startup: React.FC = () => {
         </FormContainer>
 
         <Footer>
-          <Button>
+          <Button onPress={() => natigation.navigate('Header')}>
             <ButtonText>CADASTRAR</ButtonText>
           </Button>
         </Footer>
