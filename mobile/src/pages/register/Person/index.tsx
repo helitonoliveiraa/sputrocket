@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Octicons } from '@expo/vector-icons';
+import { StatusBar } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import logoPerson from '../../../assets/logo-person.png';
@@ -55,51 +55,54 @@ const Person: React.FC = () => {
   }
 
   return (
-    <Container>
-      <FormContainer>
-        <HeaderContainer>
-          <Header>
-            <PhotoPerfil onPress={handleSelectImage}>
-              {image.length === 0 ? (
-                <ImagePreviw source={logoPerson} />
-              ) : (
-                image.map(img => (
-                  <ImagePreviw key={img} source={{ uri: img }} />
-                ))
-              )}
-            </PhotoPerfil>
-          </Header>
-          <LineThin
-            style={{
-              marginTop: -75,
-            }}
-          />
-        </HeaderContainer>
+    <>
+      <StatusBar backgroundColor="#9900cc" barStyle="light-content" />
+      <Container>
+        <FormContainer>
+          <HeaderContainer>
+            <Header>
+              <PhotoPerfil onPress={handleSelectImage}>
+                {image.length === 0 ? (
+                  <ImagePreviw source={logoPerson} />
+                ) : (
+                  image.map(img => (
+                    <ImagePreviw key={img} source={{ uri: img }} />
+                  ))
+                )}
+              </PhotoPerfil>
+            </Header>
+            <LineThin
+              style={{
+                marginTop: -75,
+              }}
+            />
+          </HeaderContainer>
 
-        <Label>Nome Completo</Label>
-        <Input placeholder="ex: Marcos viana" />
+          <Label>Nome Completo</Label>
+          <Input placeholder="ex: Marcos viana" />
 
-        <Label>Data de Nascimento</Label>
-        <Input placeholder="ex: 12/05/2000" />
+          <Label>Data de Nascimento</Label>
+          <Input placeholder="ex: 12/05/2000" />
 
-        <Label>Número de Telefone</Label>
-        <Input />
+          <Label>Número de Telefone</Label>
+          <Input />
 
-        <Label>E-mail</Label>
-        <Input />
+          <Label>E-mail</Label>
+          <Input />
 
-        <Label>Senha</Label>
-        <Input />
-      </FormContainer>
+          <Label>Senha</Label>
+          <Input />
+        </FormContainer>
 
-      <Footer>
-        <Button>
-          <ButtonText>CADASTRAR</ButtonText>
-        </Button>
+        <Footer>
+          <Button>
+            <ButtonText>CADASTRAR</ButtonText>
+          </Button>
 
-        <LineThin />
-      </Footer>
-    </Container>
+          <LineThin />
+        </Footer>
+      </Container>
+    </>
   );
 };
 
