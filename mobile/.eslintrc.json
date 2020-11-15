@@ -35,7 +35,9 @@
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
+    "object-curly-newline": "off",
     "arrow-parens": "off",
     "camelcase": "off",
     "import/extensions": [
