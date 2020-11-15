@@ -16,6 +16,9 @@ export default class StartupProfile {
   creation_date: string;
 
   @Column()
+  description: string;
+
+  @Column()
   email: string;
 
   @Column()
