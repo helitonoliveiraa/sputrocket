@@ -4,6 +4,8 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Onboard from '../components/Onboard';
+
 import Dashboard from '../pages/Dashboard';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
@@ -26,6 +28,8 @@ const Routes: React.FC = () => (
           },
         }}
       >
+        <Stack.Screen name="Onboard" component={Onboard} />
+
         <Stack.Screen name="Dashboard" component={Dashboard} />
 
         <Stack.Screen name="SignIn" component={SignIn} />

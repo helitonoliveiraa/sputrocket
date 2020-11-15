@@ -19,6 +19,7 @@ export const InputEmail = styled.TextInput`
   border-color: #9900cc;
   padding: 0 20px;
   background: #fff;
+  color: #333;
   text-align: center;
   font-family: 'Roboto_700Bold_Italic';
 `;
@@ -31,6 +32,7 @@ export const InputPassword = styled.TextInput`
   border-color: #9900cc;
   padding: 0 20px;
   background: #fff;
+  color: #333;
   text-align: center;
   font-family: 'Roboto_700Bold_Italic';
 
