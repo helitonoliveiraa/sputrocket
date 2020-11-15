@@ -1,16 +1,20 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import * as Yup from 'yup';
 
 import PersonalProfile from '../models/PersonalProfile';
+import personal_profile_views from '../views/personal_profile_views';
 
 export default {
   // To get all the pesonal's profiles
   async index(request: Request, response: Response) {
     const personalProfileRepository = getRepository(PersonalProfile);
 
-    const personalProfiles = await personalProfileRepository.find();
+    const personalProfiles = await personalProfileRepository.find({
+      relations: ['personal_profile_image']
+    });
 
-    return response.json(personalProfiles);
+    return response.json(personal_profile_views.renderMany(personalProfiles));
   },
 
   // To get a specific personal profile
@@ -19,9 +23,11 @@ export default {
 
     const personalProfileRepository = getRepository(PersonalProfile);
 
-    const personalProfile = await personalProfileRepository.findOneOrFail(id);
+    const personalProfile = await personalProfileRepository.findOneOrFail(id, {
+      relations: ['personal_profile_image']
+    });
 
-    return response.json(personalProfile);
+    return response.json(personal_profile_views.render(personalProfile));
   },
 
   // Creating a new personal profile
@@ -49,7 +55,7 @@ export default {
     });
 
     // Putting the personal profile image, and the profile image on the personal profiles database
-    const personalProfile = personalProfileRepository.create({
+    const data = {
       name,
       nickname,
       gender,
@@ -61,9 +67,30 @@ export default {
       email,
       password,
       personal_profile_image,
+    };
+
+    // Validation with Yup
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      nickname: Yup.string().required(),
+      gender: Yup.boolean().required(),
+      age: Yup.string().required(),
+      address: Yup.string().required(),
+      phone_number: Yup.string().required(),
+      in_a_startup: Yup.boolean().required(),
+      description: Yup.string().required().max(300),
+      email: Yup.string().required(),
+      password: Yup.string().required(),
+      personal_profile_image: Yup.array(Yup.object().shape({
+        path: Yup.string().required(),
+      })),
     });
 
-    console.log(personalProfile)
+    await schema.validate(data, {
+      abortEarly: false,
+    });
+
+    const personalProfile = personalProfileRepository.create(data);
   
     // Saving the database and than returning a message in json with the status "sent"
     await personalProfileRepository.save(personalProfile);
