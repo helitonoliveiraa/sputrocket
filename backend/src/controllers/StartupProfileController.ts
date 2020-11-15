@@ -37,7 +37,6 @@ export default {
       creation_date,
       description,
       email,
-      password,
     } = request.body;
   
     const startupProfileRepository = getRepository(StartupProfile);
@@ -63,7 +62,6 @@ export default {
       creation_date,
       description,
       email,
-      password,
       startup_profile_image,
       startup_images,
     };
@@ -74,7 +72,6 @@ export default {
       creation_date: Yup.string().required(),
       description: Yup.string().required().max(300),
       email: Yup.string().required(),
-      password: Yup.string().required(),
       startup_profile_image: Yup.array(Yup.object().shape({
         path: Yup.string().required(),
       })),

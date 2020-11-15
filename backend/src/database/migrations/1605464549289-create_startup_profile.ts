@@ -30,10 +30,6 @@ export class createStartupProfile1605464549289 implements MigrationInterface {
           name: 'email',
           type: 'varchar',
         },
-        {
-          name: 'password',
-          type: 'varchar',
-        },
       ]
     }))
   }

@@ -42,7 +42,6 @@ export default {
       in_a_startup,
       description,
       email,
-      password,
     } = request.body;
   
     const personalProfileRepository = getRepository(PersonalProfile);
@@ -65,7 +64,6 @@ export default {
       in_a_startup,
       description,
       email,
-      password,
       personal_profile_image,
     };
 
@@ -80,7 +78,6 @@ export default {
       in_a_startup: Yup.boolean().required(),
       description: Yup.string().required().max(300),
       email: Yup.string().required(),
-      password: Yup.string().required(),
       personal_profile_image: Yup.array(Yup.object().shape({
         path: Yup.string().required(),
       })),
