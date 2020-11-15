@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -19,6 +19,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <Container>
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Title>EMBARQUE NESSA JORNADA</Title>
 
       <Image source={backgroundImg} />

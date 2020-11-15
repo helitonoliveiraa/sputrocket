@@ -3,7 +3,14 @@ import { Image, StatusBar } from 'react-native';
 
 import backgroundImg from '../../assets/image.png';
 
-import { Container, InputContainer, InputEmail, InputPassword } from './styles';
+import {
+  Container,
+  InputContainer,
+  InputEmail,
+  InputPassword,
+  ButtonLogin,
+  ButtonLoginText,
+} from './styles';
 
 const SignIn: React.FC = () => (
   <>
@@ -15,6 +22,10 @@ const SignIn: React.FC = () => (
         <InputEmail placeholder="E-MAIL" placeholderTextColor="#9900cc" />
 
         <InputPassword placeholder="SENHA" placeholderTextColor="#9900cc" />
+
+        <ButtonLogin>
+          <ButtonLoginText>LOGIN</ButtonLoginText>
+        </ButtonLogin>
       </InputContainer>
     </Container>
   </>
