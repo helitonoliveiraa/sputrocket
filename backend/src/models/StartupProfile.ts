@@ -21,13 +21,9 @@ export default class StartupProfile {
   @Column()
   email: string;
 
-  @Column()
-  password: string;
-
-  /*
-    Creating the relation between this model with the StartupProfileImage to put all in the
-    same database  
-  */
+  
+  // Creating the relation between this model with the StartupProfileImage to put all in the
+  // same database  
   @OneToMany(() => StartupProfileImage, startup_profile_image => startup_profile_image.startup_profile, {
     cascade: ['insert', 'update']
   })

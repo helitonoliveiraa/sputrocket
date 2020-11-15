@@ -34,9 +34,6 @@ export default class PersonalProfile {
   @Column()
   email: string;
 
-  @Column()
-  password: string;
-
   @OneToMany(() => PersonalProfileImage, personal_profile_image => personal_profile_image.personal_profile, {
     cascade: ['insert', 'update']
   })
