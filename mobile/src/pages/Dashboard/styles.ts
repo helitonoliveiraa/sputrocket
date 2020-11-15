@@ -21,22 +21,6 @@ export const Title = styled.Text`
   padding-top: 40px;
 `;
 
-export const ButtonLogin = styled(RectButton)`
-  align-items: center;
-  justify-content: center;
-  background: #9900cc;
-  width: 200px;
-  height: 52px;
-  border-radius: 35px;
-  margin-top: 10px;
-`;
-
-export const ButtonLoginText = styled.Text`
-  font-family: 'Roboto_700Bold_Italic';
-  color: #fff;
-  font-size: 20px;
-`;
-
 export const ButtonSignUp = styled(RectButton)`
   align-items: center;
   justify-content: center;
@@ -45,7 +29,7 @@ export const ButtonSignUp = styled(RectButton)`
   height: 52px;
   border-radius: 35px;
 
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 20px;
 `;
 

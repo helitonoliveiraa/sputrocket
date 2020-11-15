@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Onboard from '../components/Onboard';
 
 import Dashboard from '../pages/Dashboard';
-import SignIn from '../pages/SignIn';
+// import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 
 import RegisterPerson from '../pages/register/Person';
@@ -32,7 +32,7 @@ const Routes: React.FC = () => (
 
         <Stack.Screen name="Dashboard" component={Dashboard} />
 
-        <Stack.Screen name="SignIn" component={SignIn} />
+        {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
         <Stack.Screen name="SignUp" component={SignUp} />
 
         <Stack.Screen name="RegisterPerson" component={RegisterPerson} />

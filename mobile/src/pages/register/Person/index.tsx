@@ -89,9 +89,6 @@ const Person: React.FC = () => {
 
           <Label>E-mail</Label>
           <Input />
-
-          <Label>Senha</Label>
-          <Input />
         </FormContainer>
 
         <Footer>

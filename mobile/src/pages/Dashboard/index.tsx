@@ -5,14 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import backgroundImg from '../../assets/background-img.png';
 
-import {
-  Container,
-  Title,
-  ButtonLogin,
-  ButtonLoginText,
-  ButtonSignUp,
-  ButtonSignUpText,
-} from './styles';
+import { Container, Title, ButtonSignUp, ButtonSignUpText } from './styles';
 
 const Dashboard: React.FC = () => {
   const navigation = useNavigation();
@@ -23,10 +16,6 @@ const Dashboard: React.FC = () => {
       <Title>EMBARQUE NESSA JORNADA</Title>
 
       <Image source={backgroundImg} />
-
-      <ButtonLogin onPress={() => navigation.navigate('SignIn')}>
-        <ButtonLoginText>LOGIN</ButtonLoginText>
-      </ButtonLogin>
 
       <ButtonSignUp onPress={() => navigation.navigate('SignUp')}>
         <ButtonSignUpText>CADASTRE-SE</ButtonSignUpText>
