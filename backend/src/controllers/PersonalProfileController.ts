@@ -4,6 +4,7 @@ import { getRepository } from 'typeorm';
 import PersonalProfile from '../models/PersonalProfile';
 
 export default {
+  // To get all the pesonal's profiles
   async index(request: Request, response: Response) {
     const personalProfileRepository = getRepository(PersonalProfile);
 
@@ -12,6 +13,7 @@ export default {
     return response.json(personalProfiles);
   },
 
+  // To get a specific personal profile
   async show(request: Request, response: Response) {
     const { id } = request.params;
 
@@ -22,6 +24,7 @@ export default {
     return response.json(personalProfile);
   },
 
+  // Creating a new personal profile
   async create(request: Request, response: Response) {
     const {
       name,
@@ -38,11 +41,14 @@ export default {
   
     const personalProfileRepository = getRepository(PersonalProfile);
     
+    // Getting the images and the filename to put on the column "path", which is present in
+    // personal_profile_image database
     const requestPersonalProfileImage = request.files as Express.Multer.File[];
     const personal_profile_image = requestPersonalProfileImage.map(personal_profile_images => {
       return { path: personal_profile_images.filename };
     });
 
+    // Putting the personal profile image, and the profile image on the personal profiles database
     const personalProfile = personalProfileRepository.create({
       name,
       nickname,
@@ -56,7 +62,10 @@ export default {
       password,
       personal_profile_image,
     });
+
+    console.log(personalProfile)
   
+    // Saving the database and than returning a message in json with the status "sent"
     await personalProfileRepository.save(personalProfile);
 
     return response.status(201).json(personalProfile)

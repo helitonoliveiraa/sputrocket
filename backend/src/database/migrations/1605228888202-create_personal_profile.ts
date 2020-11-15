@@ -63,5 +63,4 @@ export class createPersonalProfile1605228888202 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('personal_profile');
   }
-
 }
