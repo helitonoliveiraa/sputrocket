@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
 import logoPerson from '../../../assets/logo-person.png';
+
+import api from '../../../service/api';
 
 import {
   Container,
@@ -20,7 +23,14 @@ import {
 } from './styles';
 
 const Person: React.FC = () => {
+  const navigation = useNavigation();
+
   const [image, setImage] = useState<string[]>([]);
+
+  const [fullName, setFullName] = useState('');
+  const [date, setDate] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   async function handleSelectImage() {
     const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -54,6 +64,34 @@ const Person: React.FC = () => {
     return '';
   }
 
+  async function handleSubmit() {
+    console.log({
+      fullName,
+      date,
+      phone,
+      email,
+    });
+
+    const data = new FormData();
+
+    data.append('fullName', fullName);
+    data.append('date', date);
+    data.append('phone', phone);
+    data.append('email', email);
+
+    image.forEach((image, index) => {
+      data.append('images', {
+        name: `image_${index}.jpg`,
+        type: 'image/jpg',
+        uri: image,
+      } as any);
+    });
+
+    // await api.post('user', data);
+
+    navigation.navigate('Success');
+  }
+
   return (
     <>
       <StatusBar backgroundColor="#9900cc" barStyle="light-content" />
@@ -79,23 +117,28 @@ const Person: React.FC = () => {
           </HeaderContainer>
 
           <Label>Nome Completo</Label>
-          <Input placeholder="ex: Marcos viana" />
+          <Input
+            placeholder="ex: Marcos viana"
+            value={fullName}
+            onChangeText={text => setFullName(text)}
+          />
 
           <Label>Data de Nascimento</Label>
-          <Input placeholder="ex: 12/05/2000" />
+          <Input
+            placeholder="ex: 12/05/2000"
+            value={date}
+            onChangeText={text => setDate(text)}
+          />
 
           <Label>Número de Telefone</Label>
-          <Input />
+          <Input value={phone} onChangeText={text => setPhone(text)} />
 
           <Label>E-mail</Label>
-          <Input />
-
-          <Label>Senha</Label>
-          <Input />
+          <Input value={email} onChangeText={text => setEmail(text)} />
         </FormContainer>
 
         <Footer>
-          <Button>
+          <Button onPress={handleSubmit}>
             <ButtonText>CADASTRAR</ButtonText>
           </Button>
 

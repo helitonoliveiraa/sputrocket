@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { StatusBar } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import dotsImg from '../../../assets/dots.png';
@@ -29,6 +29,7 @@ import {
 
 const Dashboard: React.FC = () => (
   <Container>
+    <StatusBar backgroundColor="#9900cc" barStyle="light-content" />
     <ScrollContainer>
       <Header>
         <ProfileContainer>
