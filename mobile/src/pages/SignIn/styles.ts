@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -37,4 +38,23 @@ export const InputPassword = styled.TextInput`
   font-family: 'Roboto_700Bold_Italic';
 
   margin-top: 6px;
+`;
+
+export const ButtonLogin = styled(RectButton)`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #9900cc;
+  height: 52px;
+  border-radius: 35px;
+
+  padding: 0 23px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+`;
+
+export const ButtonLoginText = styled.Text`
+  font-family: 'Roboto_700Bold_Italic';
+  color: #fff;
+  font-size: 16px;
 `;

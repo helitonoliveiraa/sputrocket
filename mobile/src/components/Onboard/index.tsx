@@ -1,6 +1,14 @@
 import React from 'react';
+import {
+  Text,
+  View,
+  Image,
+  Dimensions,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { View, Image, Dimensions, StyleSheet, StatusBar } from 'react-native';
+
 import Onboarding from 'react-native-onboarding-swiper';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
@@ -26,6 +34,20 @@ const DoneButton: React.FC = ({ ...props }) => {
       onPress={() => natigation.navigate('Dashboard')}
     >
       <Feather name="chevron-right" size={30} color="#fff" />
+    </RectButton>
+  );
+};
+
+const SkipButton: React.FC = ({ ...props }) => {
+  const natigation = useNavigation();
+
+  return (
+    <RectButton
+      style={styles.skipButton}
+      {...props}
+      onPress={() => natigation.navigate('Dashboard')}
+    >
+      <Text style={styles.skipButtonText}>Pular</Text>
     </RectButton>
   );
 };
@@ -74,8 +96,9 @@ const Onboard: React.FC = () => (
       controlStatusBar={false}
       bottomBarColor="#fff"
       bottomBarHeight={80}
-      showSkip={false}
+      showSkip
       DotComponent={Square}
+      SkipButtonComponent={SkipButton}
       NextButtonComponent={NextButton}
       DoneButtonComponent={DoneButton}
       pages={[
@@ -152,7 +175,7 @@ const Onboard: React.FC = () => (
             color: '#9900CC',
             fontFamily: 'Roboto_700Bold',
             fontSize: 16,
-            textAlign: 'justify',
+            textAlign: 'center',
             alignSelf: 'center',
             width: 270,
             paddingBottom: 130,
@@ -205,5 +228,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#9900CC',
     marginRight: 20,
+  },
+
+  skipButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 20,
+    width: 56,
+    height: 56,
+    borderRadius: 27,
+  },
+
+  skipButtonText: {
+    color: 'rgba(153, 0, 204, 0.5)',
+    fontWeight: 'normal',
   },
 });
