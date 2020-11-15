@@ -26,10 +26,15 @@ import {
 } from './styles';
 
 const Startup: React.FC = () => {
-  const natigation = useNavigation();
+  const navigation = useNavigation();
 
   const [profileImg, setProfileImg] = useState<string[]>([]);
   const [startupImg, setStartupIMg] = useState<string[]>([]);
+
+  const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+  const [description, setDescription] = useState('');
+  const [email, setEmail] = useState('');
 
   async function handleSelectProfileImage() {
     const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -85,6 +90,44 @@ const Startup: React.FC = () => {
     return '';
   }
 
+  async function handleSubmit() {
+    console.log({
+      name,
+      date,
+      description,
+      email,
+      profileImg,
+      startupImg,
+    });
+
+    const data = new FormData();
+
+    data.append('name', name);
+    data.append('date', date);
+    data.append('description', description);
+    data.append('email', email);
+
+    profileImg.forEach((image, index) => {
+      data.append('images', {
+        name: `image_${index}.jpg`,
+        type: 'image/jpg',
+        uri: image,
+      } as any);
+    });
+
+    startupImg.forEach((image, index) => {
+      data.append('images', {
+        name: `image_${index}.jpg`,
+        type: 'image/jpg',
+        uri: image,
+      } as any);
+    });
+
+    // await api.post('user', data);
+
+    navigation.navigate('Success');
+  }
+
   return (
     <>
       <StatusBar backgroundColor="#9900cc" barStyle="light-content" />
@@ -110,10 +153,18 @@ const Startup: React.FC = () => {
           </HeaderContainer>
 
           <Label>Nome Startup</Label>
-          <Input placeholder="Ex: SputRocket" />
+          <Input
+            placeholder="Ex: SputRocket"
+            value={name}
+            onChangeText={text => setName(text)}
+          />
 
           <Label>Ano de Criação</Label>
-          <Input placeholder="Ex: 24/11/1998" />
+          <Input
+            placeholder="Ex: 24/11/1998"
+            value={date}
+            onChangeText={text => setDate(text)}
+          />
 
           <Label>Fotos da Startup</Label>
 
@@ -132,17 +183,22 @@ const Startup: React.FC = () => {
           </ScrollContainer>
 
           <Label>Descrição</Label>
-          <Input box multiline />
+          <Input
+            box
+            multiline
+            value={description}
+            onChangeText={text => setDescription(text)}
+          />
 
           <Label>Nickname</Label>
           <Input />
 
           <Label>E-mail</Label>
-          <Input />
+          <Input value={email} onChangeText={text => setEmail(text)} />
         </FormContainer>
 
         <Footer>
-          <Button onPress={() => natigation.navigate('Header')}>
+          <Button onPress={handleSubmit}>
             <ButtonText>CADASTRAR</ButtonText>
           </Button>
         </Footer>
@@ -152,3 +208,5 @@ const Startup: React.FC = () => {
 };
 
 export default Startup;
+
+// () => natigation.navigate('Header')
