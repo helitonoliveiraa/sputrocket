@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
+
 import {
   useFonts,
   Roboto_400Regular,
@@ -9,7 +10,7 @@ import {
   Roboto_900Black,
 } from '@expo-google-fonts/roboto';
 
-import Routes from './src/routes';
+import Routes from './src/routes/routes';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -24,7 +25,11 @@ const App: React.FC = () => {
     return <Text>Loading..</Text>;
   }
 
-  return <Routes />;
+  return (
+    <>
+      <Routes />
+    </>
+  );
 };
 
 export default App;
