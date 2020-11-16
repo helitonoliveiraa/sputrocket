@@ -41,7 +41,7 @@
 </h3>
 
 <h3>
-  <img src="./.github/banner2.png" />
+  <img src="./.github/banner3.png" />
 </h3>
 
 ## :rocket: Sobre
