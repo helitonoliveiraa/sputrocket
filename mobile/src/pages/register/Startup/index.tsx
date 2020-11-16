@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
 
 import startupImgLogo from '../../../assets/startup-logo.png';
+
+import api from '../../../service/api';
 
 import {
   Container,
@@ -91,41 +93,47 @@ const Startup: React.FC = () => {
   }
 
   async function handleSubmit() {
-    console.log({
-      name,
-      date,
-      description,
-      email,
-      profileImg,
-      startupImg,
-    });
+    try {
+      console.log({
+        name,
+        date,
+        description,
+        email,
+        profileImg,
+        startupImg,
+      });
 
-    const data = new FormData();
+      const data = new FormData();
 
-    data.append('name', name);
-    data.append('date', date);
-    data.append('description', description);
-    data.append('email', email);
+      data.append('name', name);
+      data.append('creation_date', date);
+      data.append('description', description);
+      data.append('email', email);
 
-    profileImg.forEach((image, index) => {
-      data.append('images', {
-        name: `image_${index}.jpg`,
-        type: 'image/jpg',
-        uri: image,
-      } as any);
-    });
+      profileImg.forEach((image, index) => {
+        data.append('startup_profile_image', {
+          name: `image_${index}.jpg`,
+          type: 'image/jpg',
+          uri: image,
+        } as any);
+      });
 
-    startupImg.forEach((image, index) => {
-      data.append('images', {
-        name: `image_${index}.jpg`,
-        type: 'image/jpg',
-        uri: image,
-      } as any);
-    });
+      startupImg.forEach((image, index) => {
+        data.append('startup_images', {
+          name: `image_${index}.jpg`,
+          type: 'image/jpg',
+          uri: image,
+        } as any);
+      });
 
-    // await api.post('user', data);
+      await api.post('register/startup-profile', data);
 
-    navigation.navigate('Success');
+      navigation.navigate('Success');
+    } catch (err) {
+      return Alert.alert('Falha no cadastro!');
+    }
+
+    return '';
   }
 
   return (
@@ -189,9 +197,6 @@ const Startup: React.FC = () => {
             value={description}
             onChangeText={text => setDescription(text)}
           />
-
-          <Label>Nickname</Label>
-          <Input />
 
           <Label>E-mail</Label>
           <Input value={email} onChangeText={text => setEmail(text)} />

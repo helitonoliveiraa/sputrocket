@@ -17,7 +17,7 @@ const Success: React.FC = () => {
           inclível!!! :)
         </Description>
 
-        <Button onPress={() => navigation.navigate('Profile')}>
+        <Button onPress={() => navigation.navigate('Dashboard')}>
           <ButtonText>Ok</ButtonText>
         </Button>
       </Container>
