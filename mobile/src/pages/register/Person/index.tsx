@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Switch, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -19,6 +19,8 @@ import {
   Input,
   Button,
   ButtonText,
+  SwitchContainer,
+  SwitchText,
   Footer,
 } from './styles';
 
@@ -27,10 +29,29 @@ const Person: React.FC = () => {
 
   const [image, setImage] = useState<string[]>([]);
 
+  const [stateSwitch, setStateSwich] = useState(false);
+
   const [fullName, setFullName] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [gender, setGender] = useState(false);
   const [date, setDate] = useState('');
+  const [city, setCity] = useState('');
   const [phone, setPhone] = useState('');
+  const [description, setDescription] = useState('');
   const [email, setEmail] = useState('');
+  const [startup, setStartup] = useState(true);
+
+  function toggleSwitch() {
+    setGender(gender !== true);
+
+    console.log(gender);
+  }
+
+  function toggleSwitchStartup() {
+    setStartup(startup !== true);
+
+    console.log(startup);
+  }
 
   async function handleSelectImage() {
     const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -65,31 +86,47 @@ const Person: React.FC = () => {
   }
 
   async function handleSubmit() {
-    console.log({
-      fullName,
-      date,
-      phone,
-      email,
-    });
+    try {
+      console.log({
+        fullName,
+        gender,
+        nickname,
+        date,
+        phone,
+        city,
+        description,
+        email,
+        startup,
+      });
 
-    const data = new FormData();
+      const data = new FormData();
 
-    data.append('fullName', fullName);
-    data.append('date', date);
-    data.append('phone', phone);
-    data.append('email', email);
+      data.append('name', fullName);
+      data.append('nickname', nickname);
+      data.append('gender', gender);
+      data.append('age', date);
+      data.append('address', city);
+      data.append('phone_number', phone);
+      data.append('in_a_startup', String(startup));
+      data.append('description', description);
+      data.append('email', email);
 
-    image.forEach((image, index) => {
-      data.append('images', {
-        name: `image_${index}.jpg`,
-        type: 'image/jpg',
-        uri: image,
-      } as any);
-    });
+      image.forEach((image, index) => {
+        data.append('personal_profile_image', {
+          name: `image_${index}.jpg`,
+          type: 'image/jpg',
+          uri: image,
+        } as any);
+      });
 
-    // await api.post('user', data);
+      await api.post('register/personal-profile', data);
 
-    navigation.navigate('Success');
+      navigation.navigate('Success');
+    } catch (err) {
+      return Alert.alert('Falha no cadastro!');
+    }
+
+    return '';
   }
 
   return (
@@ -123,6 +160,29 @@ const Person: React.FC = () => {
             onChangeText={text => setFullName(text)}
           />
 
+          <SwitchContainer>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <SwitchText>Maculino</SwitchText>
+              <Switch
+                thumbColor="#fff"
+                trackColor={{ false: '#ccc', true: '#39CC83' }}
+                value={!gender}
+                onValueChange={toggleSwitch}
+              />
+              <SwitchText>Feminino</SwitchText>
+            </View>
+          </SwitchContainer>
+
+          <LineThin style={{ marginBottom: 20 }} />
+
+          <Label>Nickname</Label>
+          <Input value={nickname} onChangeText={text => setNickname(text)} />
+
           <Label>Data de Nascimento</Label>
           <Input
             placeholder="ex: 12/05/2000"
@@ -132,6 +192,37 @@ const Person: React.FC = () => {
 
           <Label>Número de Telefone</Label>
           <Input value={phone} onChangeText={text => setPhone(text)} />
+
+          <Label>Estado/Cidade</Label>
+          <Input value={city} onChangeText={text => setCity(text)} />
+
+          <SwitchContainer>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <SwitchText>Estou em um Startup</SwitchText>
+              <Switch
+                thumbColor="#fff"
+                trackColor={{ false: '#ccc', true: '#39CC83' }}
+                value={!startup}
+                onValueChange={toggleSwitchStartup}
+              />
+              <SwitchText>Não tenho Startup</SwitchText>
+            </View>
+          </SwitchContainer>
+
+          <LineThin style={{ marginBottom: 20 }} />
+
+          <Label>Descrição</Label>
+          <Input
+            box
+            multiline
+            value={description}
+            onChangeText={text => setDescription(text)}
+          />
 
           <Label>E-mail</Label>
           <Input value={email} onChangeText={text => setEmail(text)} />

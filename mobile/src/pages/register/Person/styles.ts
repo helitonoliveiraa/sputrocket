@@ -2,6 +2,10 @@ import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 import { TouchableOpacity } from 'react-native';
 
+interface Props {
+  box?: boolean;
+}
+
 export const Container = styled.SafeAreaView`
   flex: 1;
 `;
@@ -64,12 +68,12 @@ export const PhotoPerfil = styled(TouchableOpacity).attrs({
 export const Label = styled.Text`
   font-family: 'Roboto_700Bold_Italic';
   color: #9900cc;
-  margin: 10px 0 0 10px;
+  margin: 15px 0 0 10px;
 `;
 
 export const Input = styled.TextInput`
   width: 100%;
-  height: 45px;
+  height: ${({ box }) => (box ? '112px' : '45px')};
   border-width: 1px;
   border-radius: 35px;
   border-color: #9900cc;
@@ -99,4 +103,15 @@ export const Footer = styled.View`
   width: 100%;
   background: #fff;
   padding: 0 0 10px;
+`;
+
+export const SwitchContainer = styled.View`
+  margin: 20px 20px;
+  align-items: center;
+`;
+
+export const SwitchText = styled.Text`
+  font-family: 'Roboto_700Bold_Italic';
+  color: #9900cc;
+  padding: 0 10px;
 `;
