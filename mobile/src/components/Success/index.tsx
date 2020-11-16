@@ -13,7 +13,7 @@ const Success: React.FC = () => {
         <StatusBar backgroundColor="#37c77f" barStyle="light-content" />
         <Title>Ebaaa!</Title>
         <Description>
-          O cadastro deu certo e já está fazendo parte dessa platarforma
+          O cadastro deu certo e você já está fazendo parte dessa platarforma
           inclível!!! :)
         </Description>
 

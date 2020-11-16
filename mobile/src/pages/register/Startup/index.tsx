@@ -118,14 +118,6 @@ const Startup: React.FC = () => {
         } as any);
       });
 
-      startupImg.forEach((image, index) => {
-        data.append('startup_images', {
-          name: `image_${index}.jpg`,
-          type: 'image/jpg',
-          uri: image,
-        } as any);
-      });
-
       await api.post('register/startup-profile', data);
 
       navigation.navigate('Success');

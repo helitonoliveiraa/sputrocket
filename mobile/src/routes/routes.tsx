@@ -14,8 +14,6 @@ import RegisterStartup from '../pages/register/Startup';
 
 import Success from '../components/Success';
 
-import DrowerNavegator from './routesDrower';
-
 const Stack = createStackNavigator();
 const Routes: React.FC = () => (
   <>
@@ -39,12 +37,6 @@ const Routes: React.FC = () => (
         <Stack.Screen name="RegisterStartup" component={RegisterStartup} />
 
         <Stack.Screen name="Success" component={Success} />
-
-        <Stack.Screen
-          name="Profile"
-          component={DrowerNavegator}
-          home={Dashboard}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   </>
