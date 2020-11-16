@@ -198,9 +198,6 @@ const Startup: React.FC = () => {
             onChangeText={text => setDescription(text)}
           />
 
-          <Label>Nickname</Label>
-          <Input />
-
           <Label>E-mail</Label>
           <Input value={email} onChangeText={text => setEmail(text)} />
         </FormContainer>

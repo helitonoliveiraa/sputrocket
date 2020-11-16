@@ -29,8 +29,6 @@ const Person: React.FC = () => {
 
   const [image, setImage] = useState<string[]>([]);
 
-  const [stateSwitch, setStateSwich] = useState(false);
-
   const [fullName, setFullName] = useState('');
   const [nickname, setNickname] = useState('');
   const [gender, setGender] = useState(false);
@@ -103,7 +101,7 @@ const Person: React.FC = () => {
 
       data.append('name', fullName);
       data.append('nickname', nickname);
-      data.append('gender', gender);
+      data.append('gender', String(gender));
       data.append('age', date);
       data.append('address', city);
       data.append('phone_number', phone);
